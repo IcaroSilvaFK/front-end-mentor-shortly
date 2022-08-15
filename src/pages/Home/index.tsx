@@ -131,7 +131,7 @@ export function Home() {
             source='/assets/icon-detailed-records.svg'
             mt='45px'
           />
-          <Separator left='845px' topMobile='780px' leftMobie='160px' />
+          <Separator left='845px' topMobile='782px' leftMobie='160px' />
           <Card
             title='Fully Customizable'
             paragraphy='Improve brand awareness and content discoverability through customizable links, supercharging audience engagement.'
