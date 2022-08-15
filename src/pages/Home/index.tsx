@@ -152,8 +152,6 @@ export function Home() {
                 link={link.original_link}
                 linkShortened={link.full_short_link}
                 key={link.code}
-                link='https://duckduckgo.com/?q=tradutor&ia=web'
-                linkShortened='TESTE'
               />
             ))}
           </Ul>

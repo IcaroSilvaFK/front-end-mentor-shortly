@@ -8,7 +8,6 @@ interface ListCardItem {
 
 export function ListCardItem({ link, linkShortened }: ListCardItem) {
   const inputRef = useRef<HTMLInputElement | null>(null);
-<<<<<<< HEAD
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
@@ -18,7 +17,6 @@ export function ListCardItem({ link, linkShortened }: ListCardItem) {
       clearTimeout(clearTime);
     };
   }, [isCopied]);
-=======
   const [isCopiedText, setIsCopiedText] = useState(false);
 
   useEffect(() => {
@@ -28,17 +26,13 @@ export function ListCardItem({ link, linkShortened }: ListCardItem) {
       clearTimeout(timeOut);
     };
   }, [isCopiedText]);
->>>>>>> d67353401a540eb29bf4d4618ab723ffcf420eab
 
   function copyText() {
     console.log(inputRef.current);
     inputRef.current?.select();
     document.execCommand('copy');
-<<<<<<< HEAD
     setIsCopied(true);
-=======
     setIsCopiedText(true);
->>>>>>> d67353401a540eb29bf4d4618ab723ffcf420eab
   }
 
   return (
@@ -47,13 +41,9 @@ export function ListCardItem({ link, linkShortened }: ListCardItem) {
       <div>
         <input type='text' value={linkShortened} ref={inputRef} />
         <span>{linkShortened}</span>
-<<<<<<< HEAD
-        <Button status={isCopied} onClick={copyText}>
-          {isCopied ? 'Copied!' : 'Copy'}
-=======
+
         <Button status={isCopiedText} onClick={copyText}>
           {isCopiedText ? 'Copied!' : 'Copy'}
->>>>>>> d67353401a540eb29bf4d4618ab723ffcf420eab
         </Button>
       </div>
     </Container>
