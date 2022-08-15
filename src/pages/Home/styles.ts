@@ -249,7 +249,7 @@ export const Separator = styled.div<SeparatorProps>`
   left: ${({ left }) => left && left};
   right: ${({ right }) => right && right};
 
-  @media screen {
+  @media screen and (max-width: 500px) {
     top: ${({ topMobile }) => topMobile && topMobile};
     bottom: ${({ bottomMobile }) => bottomMobile && bottomMobile};
     left: ${({ leftMobie }) => leftMobie && leftMobie};
