@@ -12,7 +12,7 @@ export const Container = styled.li`
   align-items: center;
   justify-content: space-between;
 
-  padding: 6px 10px;
+  padding: 12px 18px;
 
   border-radius: 5px;
 
@@ -33,6 +33,10 @@ export const Container = styled.li`
   }
 
   div {
+<<<<<<< HEAD
+=======
+    margin-left: 20px;
+>>>>>>> d67353401a540eb29bf4d4618ab723ffcf420eab
     span {
       color: ${({ theme }) => theme.colors.cyan[500]};
       text-align: center;
@@ -43,6 +47,10 @@ export const Container = styled.li`
     input {
       background: transparent;
 
+<<<<<<< HEAD
+=======
+      z-index: -1;
+>>>>>>> d67353401a540eb29bf4d4618ab723ffcf420eab
       opacity: 0;
 
       :selected {
