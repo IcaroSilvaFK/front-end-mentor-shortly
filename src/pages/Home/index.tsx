@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 
 import { schema } from '../../utils/schema';
 import { Button } from '../../components/Button';
@@ -23,9 +24,20 @@ import {
 } from './styles';
 import { useEffect, useState } from 'react';
 import { ListCardItem } from '../../components/ListItemLink';
+import { useStorage } from '../../hooks/useStorage';
 
 interface IFormProps {
   url: string;
+}
+
+interface IDatProps {
+  result: { code: string; original_link: string; full_short_link: string };
+}
+
+interface ILinksProps {
+  code: string;
+  original_link: string;
+  full_short_link: string;
 }
 
 export function Home() {
@@ -42,17 +54,37 @@ export function Home() {
   });
   const [hasError, setHasError] = useState(false);
   const [isVisibleMenuMobile, setIsVisibleMenuMobile] = useState(false);
-  const [links, setLinks] = useState(['acsac']);
+  const [links, setLinks] = useState<ILinksProps[]>([]);
 
   useEffect(() => {
     if (errors.url) {
       setHasError(true);
+      reset();
     }
+
+    const timeOut = setTimeout(() => setHasError(false), 3000);
+
+    return () => {
+      clearTimeout(timeOut);
+    };
   }, [errors]);
 
-  const onSubmit: SubmitHandler<IFormProps> = ({ url }) => {
-    console.log(url);
-    reset();
+  const onSubmit: SubmitHandler<IFormProps> = async ({ url }) => {
+    try {
+      const { data } = await axios.post<IDatProps>(
+        `https://api.shrtco.de/v2/shorten?url=${url}`
+      );
+      const link = {
+        code: data.result.code,
+        original_link: data.result.original_link,
+        full_short_link: data.result.full_short_link,
+      };
+      setLinks([...links, link]);
+      reset();
+    } catch (errr) {
+      setHasError(true);
+      reset();
+    }
   };
 
   function handleToggleMenu() {
@@ -61,6 +93,10 @@ export function Home() {
 
   function handleCloseMenuMobile() {
     setIsVisibleMenuMobile(false);
+  }
+
+  function retriError() {
+    setHasError(false);
   }
 
   return (
@@ -100,9 +136,8 @@ export function Home() {
             type='text'
             placeholder='Shorten a link here...'
             {...register('url')}
-            onChange={() => setHasError(false)}
           />
-          {hasError && <span>Please add a link</span>}
+          {hasError && <span>Please addLinks a link</span>}
         </ColumnForm>
 
         <Button variant='solid' rounded='5px' py='16px'>
@@ -114,8 +149,9 @@ export function Home() {
           <Ul>
             {links.map((link) => (
               <ListCardItem
-                link='https://duckduckgo.com/?q=tradutor&ia=web'
-                linkShortened='Icaro'
+                link={link.original_link}
+                linkShortened={link.full_short_link}
+                key={link.code}
               />
             ))}
           </Ul>

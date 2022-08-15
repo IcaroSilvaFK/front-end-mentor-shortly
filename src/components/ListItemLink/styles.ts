@@ -1,3 +1,4 @@
+import { transparentize } from 'polished';
 import styled from 'styled-components';
 
 type IButtonProps = {
@@ -21,18 +22,70 @@ export const Container = styled.li`
 
   p {
     color: ${({ theme }) => theme.colors.gray[800]};
+
+    max-width: 400px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
   }
 
   div {
-    input {
-      background: transparent;
+    span {
       color: ${({ theme }) => theme.colors.cyan[500]};
-
       text-align: center;
       font-weight: 500;
       font-size: 1rem;
+    }
+
+    input {
+      background: transparent;
+
+      opacity: 0;
+
       :selected {
         background: transparent;
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 0;
+
+    max-width: 350px;
+    width: 100%;
+
+    margin: 0 auto;
+
+    padding: 4px;
+
+    p {
+      max-width: 250px;
+
+      padding: 8px;
+    }
+
+    div {
+      border-top: 1px solid
+        ${({ theme }) => transparentize(0.8, theme.colors.gray[600])};
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      max-width: 350px;
+      width: 100%;
+
+      span {
+        text-align: left;
+        flex: 1;
+
+        padding: 6px;
       }
     }
   }
@@ -55,4 +108,11 @@ export const Button = styled.button<IButtonProps>`
   margin-left: 12px;
 
   letter-spacing: 1px;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    max-width: 300px;
+
+    margin: 6px auto;
+  }
 `;

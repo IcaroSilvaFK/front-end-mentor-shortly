@@ -262,6 +262,8 @@ export const Separator = styled.div<SeparatorProps>`
 export const BoostSection = styled.section`
   background-image: url('assets/bg-boost-desktop.svg');
   background-color: ${({ theme }) => theme.colors.violet[800]};
+  background-repeat: no-repeat;
+  background-size: cover;
 
   display: flex;
   flex-direction: column;
@@ -315,4 +317,22 @@ export const Ul = styled.ul`
   width: 100%;
 
   margin: 0 auto;
+
+  max-height: 500px;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  ::-webkit-scrollbar {
+    background: transparent;
+
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.violet[800]};
+  }
 `;

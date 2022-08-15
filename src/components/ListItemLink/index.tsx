@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Container, Button } from './styles';
 
 interface ListCardItem {
@@ -8,11 +8,21 @@ interface ListCardItem {
 
 export function ListCardItem({ link, linkShortened }: ListCardItem) {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+
+  useEffect(() => {
+    const clearTime = setTimeout(() => setIsCopied(false), 2000);
+
+    return () => {
+      clearTimeout(clearTime);
+    };
+  }, [isCopied]);
 
   function copyText() {
     console.log(inputRef.current);
     inputRef.current?.select();
     document.execCommand('copy');
+    setIsCopied(true);
   }
 
   return (
@@ -20,8 +30,9 @@ export function ListCardItem({ link, linkShortened }: ListCardItem) {
       <p>{link}</p>
       <div>
         <input type='text' value={linkShortened} ref={inputRef} />
-        <Button status={true} onClick={copyText}>
-          {false ? 'Copy' : 'Copied!'}
+        <span>{linkShortened}</span>
+        <Button status={isCopied} onClick={copyText}>
+          {isCopied ? 'Copied!' : 'Copy'}
         </Button>
       </div>
     </Container>
