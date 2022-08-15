@@ -28,7 +28,6 @@ export function ListCardItem({ link, linkShortened }: ListCardItem) {
   }, [isCopiedText]);
 
   function copyText() {
-    console.log(inputRef.current);
     inputRef.current?.select();
     document.execCommand('copy');
     setIsCopied(true);
