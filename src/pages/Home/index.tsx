@@ -19,8 +19,10 @@ import {
   Separator,
   BoostSection,
   ColumnForm,
+  Ul,
 } from './styles';
 import { useEffect, useState } from 'react';
+import { ListCardItem } from '../../components/ListItemLink';
 
 interface IFormProps {
   url: string;
@@ -40,6 +42,7 @@ export function Home() {
   });
   const [hasError, setHasError] = useState(false);
   const [isVisibleMenuMobile, setIsVisibleMenuMobile] = useState(false);
+  const [links, setLinks] = useState(['acsac']);
 
   useEffect(() => {
     if (errors.url) {
@@ -107,6 +110,16 @@ export function Home() {
         </Button>
       </Form>
       <SectionStatistics>
+        {links && (
+          <Ul>
+            {links.map((link) => (
+              <ListCardItem
+                link='https://duckduckgo.com/?q=tradutor&ia=web'
+                linkShortened='Icaro'
+              />
+            ))}
+          </Ul>
+        )}
         <div className='SectionStatistics__header'>
           <h3>Advanced Statistics</h3>
           <div>

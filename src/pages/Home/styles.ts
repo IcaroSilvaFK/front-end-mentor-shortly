@@ -309,3 +309,10 @@ export const ColumnForm = styled.div`
     }
   }
 `;
+
+export const Ul = styled.ul`
+  max-width: 1000px;
+  width: 100%;
+
+  margin: 0 auto;
+`;
