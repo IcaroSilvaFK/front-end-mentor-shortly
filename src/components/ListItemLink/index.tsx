@@ -8,15 +8,6 @@ interface ListCardItem {
 
 export function ListCardItem({ link, linkShortened }: ListCardItem) {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [isCopied, setIsCopied] = useState(false);
-
-  useEffect(() => {
-    const clearTime = setTimeout(() => setIsCopied(false), 2000);
-
-    return () => {
-      clearTimeout(clearTime);
-    };
-  }, [isCopied]);
   const [isCopiedText, setIsCopiedText] = useState(false);
 
   useEffect(() => {
@@ -30,7 +21,6 @@ export function ListCardItem({ link, linkShortened }: ListCardItem) {
   function copyText() {
     inputRef.current?.select();
     document.execCommand('copy');
-    setIsCopied(true);
     setIsCopiedText(true);
   }
 
