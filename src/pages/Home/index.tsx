@@ -115,7 +115,7 @@ export function Home() {
             {links.map((link) => (
               <ListCardItem
                 link='https://duckduckgo.com/?q=tradutor&ia=web'
-                linkShortened='Icaro'
+                linkShortened='TESTE'
               />
             ))}
           </Ul>

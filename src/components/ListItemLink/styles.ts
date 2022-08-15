@@ -11,7 +11,7 @@ export const Container = styled.li`
   align-items: center;
   justify-content: space-between;
 
-  padding: 6px 10px;
+  padding: 12px 18px;
 
   border-radius: 5px;
 
@@ -24,13 +24,20 @@ export const Container = styled.li`
   }
 
   div {
-    input {
-      background: transparent;
+    margin-left: 20px;
+    span {
       color: ${({ theme }) => theme.colors.cyan[500]};
-
       text-align: center;
       font-weight: 500;
       font-size: 1rem;
+    }
+
+    input {
+      background: transparent;
+
+      z-index: -1;
+      opacity: 0;
+
       :selected {
         background: transparent;
       }
